@@ -25,6 +25,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+
 var app = angular.module('hyperdexnoc', ['ui.bootstrap']);
 
 app.factory('BackendPropertyService', function() {
@@ -231,9 +232,6 @@ app.controller('WidgetsDisplayCtrl', ['$scope', 'BackendPropertyService',
     $scope.widgets[idx - 1] = $scope.widgets[idx];
     $scope.widgets[idx] = tmp;
   };
-  $scope.addClusters = function() {
-    $scope.widgets.push({template: '/partials/clusters.html'});
-  };
 
   $scope.addChart = function() {
     $scope.widgets.push({template: '/partials/default_chart.html'});
@@ -242,7 +240,6 @@ app.controller('WidgetsDisplayCtrl', ['$scope', 'BackendPropertyService',
   $scope.addServers = function() {
     $scope.widgets.push({template: '/partials/servers.html'});
   };
-
 }]);
 
 /* This little controller renders the list of servers */
@@ -251,28 +248,6 @@ app.controller('ServerListCtrl', ['$scope', '$http', '$timeout', 'BackendPropert
   $scope.sparklines = [];
   $scope.properties = [];
   $scope.servers = [];
-  scope.clusters = [];
-  var mockData = "json=" + encodeURI(JSON.stringify([
-    {
-    clusterid: 1346548468691258838,
-    version: 7,
-    flags: 0,
-    state: "AVAILABLE",
-    location: 127.0.0.1:2012,
-    id: 459933075771359374}
-]));
-var app = angular.module('ClusterList', []);
- $scope.loadData = function() {
-        var httpRequest = $http({
-            method: 'POST',
-            url: '/echo/json/',
-            data: mockData
-        }).success(function(data, status) {
-            $scope.clusters = data;
-        });
-  };
-
-
 
   $scope.url = function() {
     return BackendPropertyService.url + '/config.json?callback=JSON_CALLBACK';
@@ -588,7 +563,6 @@ app.directive('chart', ['$http', 'BackendPropertyService', 'ChartRefreshService'
           scope.draw();
           scope.fetch();
         }, true);
-
       }
     };
   }]);

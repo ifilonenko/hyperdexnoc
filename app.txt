@@ -1,0 +1,31 @@
+var mockData = "json=" + encodeURI(JSON.stringify([
+    {
+    clusterid: 1346548468691258838,
+    version: 7,
+    flags: 0,
+    state: "AVAILABLE",
+    location: 127.0.0.1:2012,
+    id:4959933075771359374}
+]));
+
+
+var app = angular.module('ClusterList', []);
+
+function PeopleCtrl($scope, $http) {
+
+    $scope.cluster = [];
+
+    $scope.loadPeople = function() {
+        var httpRequest = $http({
+            method: 'POST',
+            url: '/echo/json/',
+            data: mockData
+
+        }).success(function(data, status) {
+            $scope.people = data;
+        });
+
+    };
+
+}
+
