@@ -253,8 +253,8 @@ app.controller('ServerListCtrl', ['$scope', '$http', '$timeout', 'BackendPropert
   $scope.servers = [];
   var mockData = "json=" + encodeURI(JSON.stringify([
     {
-    clusterid: "13465484685",
-    version: "7",
+    clusterid: 13465484685,
+    version: 7,
     flags: 0,
     state: "AVAILABLE",
     location: "127.0.0.1:2012",
