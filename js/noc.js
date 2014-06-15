@@ -251,26 +251,32 @@ app.controller('ServerListCtrl', ['$scope', '$http', '$timeout', 'BackendPropert
   $scope.sparklines = [];
   $scope.properties = [];
   $scope.servers = [];
-  scope.clusters = [];
   var mockData = "json=" + encodeURI(JSON.stringify([
     {
-    clusterid: 1346548468691258838,
-    version: 7,
+    clusterid: "13465484685",
+    version: "7",
     flags: 0,
     state: "AVAILABLE",
-    location: 127.0.0.1:2012,
-    id: 459933075771359374}
+    location: "127.0.0.1:2012",
+    id: 459933075771359374
+    }
 ]));
-var app = angular.module('ClusterList', []);
- $scope.loadData = function() {
+var myapp = angular.module('myApp', []);
+
+function ClusterFunc($scope, $http) {
+
+    $scope.cluster = [];
+
+    $scope.loadData = function () {
         var httpRequest = $http({
             method: 'POST',
             url: '/echo/json/',
             data: mockData
-        }).success(function(data, status) {
+
+        }).success(function (data, status) {
             $scope.clusters = data;
         });
-  };
+    };
 
 
 
