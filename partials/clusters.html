@@ -1,4 +1,5 @@
-<div ng-controller="ClusterList" ng-init="init(widget.arg)" ng-init="loadData()"=>
+<div ng-app="myApp">
+        <div ng-controller="ClusterFunc" ng-init="init(widget.arg)">
   <button type="button" ng-click="open()" class="close"><i class="icon-pencil"></i></button>
   <div class="clearfix"></div>
   <div modal="shouldBeOpen" close="close()" options="opts">
@@ -51,7 +52,7 @@
     </thead>
     <tbody>
     <tr class="{{ classes(server); }}" ng-repeat="server in servers">
-      <td width="0"><i ng-click="expandServer($index);" class="icon-search"></i></td>
+      <td width="0"><i ng-click="expandServer($index);" class="icon-search" ng-init="loadData()"></i></td>
       <td>{{ cluster.clusterid }}</td>
       <td>{{ cluster.version }}</td>
       <td>{{ cluster.flags }}</td>
@@ -65,4 +66,5 @@
     </tr>
     </tbody>
   </table>
+ </div>
 </div>
